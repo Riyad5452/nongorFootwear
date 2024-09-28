@@ -27,7 +27,9 @@
     }
 
     #ptable::before {
-        content: "NONGOR FOOTWEAR"; /* Watermark text */
+        background-image: url('https://example.com/path-to-your-logo.png');
+        background-size: cover;
+        background-position: absolute;
         position: absolute;
         top: 50%;
         left: 50%;
@@ -40,14 +42,14 @@
 
     /* Or use the watermark logo */
 /*     Uncomment below to use a logo instead of text */
-    #ptable {
+/*     #ptable {
         display: none;
         position: relative;
         background-image: url('https://example.com/path-to-your-logo.png');
         background-size: cover;
         background-position: center;
         opacity: 0.1; /* Adjust opacity */
-    }
+    } */
 
     span {
         cursor: pointer;
