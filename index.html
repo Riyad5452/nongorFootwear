@@ -153,6 +153,19 @@
       text-align: center;
       box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     }
+     .not-found-message h2 {
+      font-size: 24px; /* Larger heading */
+      margin-bottom: 15px; /* Space below heading */
+    }
+
+    .not-found-message p {
+      font-size: 16px; /* Paragraph font size */
+      line-height: 1.5; /* Line height for readability */
+    }
+
+    .not-found-message strong {
+      color: #d9534f; /* Highlighted red text */
+    }
     
 </style>
 
@@ -311,6 +324,7 @@
                     $('#table').html(result);
                     error.text(""); // Clear error message
                     $('#ptable').show();
+                    $('.not-found-message').hide(); // Show the not-found message
                     // $("#idcard").val(""); // Clear the input field
                 } else {
                     // error.text("Data not found!");
