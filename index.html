@@ -23,33 +23,27 @@
 
     #ptable {
         display: none;
-        position: relative; /* For watermark positioning */
+        position: relative; /* For positioning the pseudo-element */
     }
 
     #ptable::before {
-        background-image: url('https://example.com/path-to-your-logo.png');
-        background-size: cover;
-        background-position: absolute;
+        content: "";
         position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        font-size: 4rem; /* Adjust as needed */
-        color: rgba(0, 0, 0, 0.1); /* Color with opacity */
-        pointer-events: none; /* Allow clicks through */
-        white-space: nowrap; /* Prevent wrapping */
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-image: url('https://example.com/path-to-your-logo.png'); /* Replace with your logo URL */
+        background-size: cover; /* Cover the entire area */
+        background-position: center; /* Center the image */
+        opacity: 0.2; /* Adjust the opacity to 20% */
+        z-index: 0; /* Behind other elements */
     }
 
-    /* Or use the watermark logo */
-/*     Uncomment below to use a logo instead of text */
-/*     #ptable {
-        display: none;
-        position: relative;
-        background-image: url('https://example.com/path-to-your-logo.png');
-        background-size: cover;
-        background-position: center;
-        opacity: 0.1; /* Adjust opacity */
-    } */
+    table {
+        position: relative; /* To ensure the table content is above the watermark */
+        z-index: 1; /* Above the pseudo-element */
+    }
 
     span {
         cursor: pointer;
@@ -63,6 +57,7 @@
         background-color: #ffc107;
     }
 </style>
+
 </head>
 
 <body>
