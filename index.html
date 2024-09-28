@@ -140,33 +140,20 @@
       border-color: #2ecc71; /* Green border for valid input */
       background-color: #eafaf1; /* Light green background for valid input */
     }
-    
-.not-found-message {
+    .not-found-message {
+      display: none; /* Hide the message by default */
       font-family: 'Arial', sans-serif;
-      background-color: #f8d7da; /* Light red background */
-      color: #721c24; /* Dark red text */
-      padding: 20px; /* Padding for space */
-      border: 1px solid #f5c6cb; /* Light red border */
-      border-radius: 8px; /* Rounded corners */
-      max-width: 600px; /* Set a max width */
-      margin: 20px auto; /* Center align the message */
-      text-align: center; /* Center the text */
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Add subtle shadow */
+      background-color: #f8d7da;
+      color: #721c24;
+      padding: 20px;
+      border: 1px solid #f5c6cb;
+      border-radius: 8px;
+      max-width: 600px;
+      margin: 20px auto;
+      text-align: center;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     }
-
-    .not-found-message h2 {
-      font-size: 24px; /* Larger heading */
-      margin-bottom: 15px; /* Space below heading */
-    }
-
-    .not-found-message p {
-      font-size: 16px; /* Paragraph font size */
-      line-height: 1.5; /* Line height for readability */
-    }
-
-    .not-found-message strong {
-      color: #d9534f; /* Highlighted red text */
-    }
+    
 </style>
 
 </head>
@@ -194,8 +181,12 @@
                             </div>
                             <button type="submit" class="btn btn-success w-100 mb-2"><i class="fas fa-search"></i>Search</button>
                             <div class="text-center">
-                                <span class="not-found-message" id="errorMessage"></span>
+                                <span id="errorMessage"></span>
                             </div>
+                             <div class="not-found-message">
+                                <h2>তথ্য পাওয়া যায়নি</h2>
+                                <p>দুঃখিত, আমরা আপনার অনুরোধ করা তথ্য খুঁজে পাইনি। <strong>Apex</strong> এর কিছু নিবন্ধ আমাদের ডাটাবেসে বর্তমানে উপলব্ধ নেই। আপনি সঠিক নিবন্ধ নম্বরটি আবার পরীক্ষা করে দেখুন অথবা আমাদের সাথে যোগাযোগ করুন।</p>
+                              </div>
                         </form>
                     </div>
                 </div>
@@ -322,8 +313,8 @@
                     $('#ptable').show();
                     // $("#idcard").val(""); // Clear the input field
                 } else {
-                    error.text("দুঃখিত, আমরা আপনার অনুরোধ করা তথ্য খুঁজে পাইনি। "Apex"-এর কিছু নিবন্ধ আমাদের ডাটাবেসে বর্তমানে উপলব্ধ নেই। আপনি সঠিক নিবন্ধ নম্বরটি আবার পরীক্ষা করে দেখুন অথবা অন্য কোনো বিকল্প চেষ্টা করতে পারেন। আমাদের সাথে যোগাযোগ করুন যদি আপনাকে আরও সহায়তা করতে পারি।
-!");
+                    // error.text("Data not found!");
+                    $('.not-found-message').show(); // Show the not-found message
                     $('#ptable').hide();
                 }
             } else {
