@@ -235,7 +235,7 @@
               const productCode = document.getElementById("idcard");
               productCode.value = decodedText;
 
-              search();
+              $("#idcard").on("keyup", search);
           }
       }
       
