@@ -56,17 +56,131 @@
     table th {
         background-color: #ffc107;
     }
+
+    .header-container {
+      text-align: center; /* Center all the content */
+      padding: 20px;
+      font-family: 'Arial', sans-serif;
+    }
+
+    .stamp {
+      height: 40px;
+      border-radius: 10px;
+      box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+      transition: transform 0.3s ease;
+      display: block;
+      margin: 0 auto;
+    }
+
+    .stamp:hover {
+      transform: scale(1.1);
+    }
+
+    .company-name {
+      font-size: 24px;
+      font-weight: bold;
+      color: #333;
+      margin: 10px 0;
+    }
+
+    .company-address {
+      font-size: 16px;
+      color: #666;
+      margin-bottom: 20px;
+    }
+
+    .header-container hr {
+      width: 50%;
+      border: 1px solid #ddd;
+      margin: 20px auto;
+    }
+
+    .form-control {
+      width: 100%; /* Full width */
+      max-width: 400px; /* Max width for larger screens */
+      padding: 15px; /* Add padding for comfort */
+      margin: 20px auto; /* Center it horizontally */
+      font-size: 16px; /* Font size for readability */
+      border: 2px solid #ddd; /* Light border */
+      border-radius: 30px; /* Rounded corners */
+      text-align: center; /* Center text */
+      box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Add light shadow */
+      outline: none; /* Remove default outline */
+      transition: all 0.3s ease; /* Smooth transition for focus effects */
+      background-color: #f9f9f9; /* Light background */
+      font-family: 'Arial', sans-serif; /* Clean font */
+    }
+
+    .form-control:focus {
+      border-color: #3498db; /* Blue border on focus */
+      background-color: #fff; /* White background on focus */
+      box-shadow: 0px 6px 12px rgba(52, 152, 219, 0.3); /* Stronger shadow on focus */
+    }
+
+    .form-control::placeholder {
+      color: #aaa; /* Placeholder text color */
+      font-size: 14px; /* Slightly smaller placeholder */
+    }
+
+    .form-control:focus::placeholder {
+      color: transparent; /* Hide placeholder on focus */
+    }
+
+    /* Advanced Effects */
+    .form-control:hover {
+      border-color: #888; /* Darker border on hover */
+    }
+
+    .form-control:invalid {
+      border-color: #e74c3c; /* Red border for invalid inputs */
+      background-color: #fdecea; /* Light red background for invalid input */
+    }
+
+    .form-control:valid {
+      border-color: #2ecc71; /* Green border for valid input */
+      background-color: #eafaf1; /* Light green background for valid input */
+    }
+    
+.not-found-message {
+      font-family: 'Arial', sans-serif;
+      background-color: #f8d7da; /* Light red background */
+      color: #721c24; /* Dark red text */
+      padding: 20px; /* Padding for space */
+      border: 1px solid #f5c6cb; /* Light red border */
+      border-radius: 8px; /* Rounded corners */
+      max-width: 600px; /* Set a max width */
+      margin: 20px auto; /* Center align the message */
+      text-align: center; /* Center the text */
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Add subtle shadow */
+    }
+
+    .not-found-message h2 {
+      font-size: 24px; /* Larger heading */
+      margin-bottom: 15px; /* Space below heading */
+    }
+
+    .not-found-message p {
+      font-size: 16px; /* Paragraph font size */
+      line-height: 1.5; /* Line height for readability */
+    }
+
+    .not-found-message strong {
+      color: #d9534f; /* Highlighted red text */
+    }
 </style>
 
 </head>
 
 <body>
     <div class="container">
-    <div style="flex: 0 1 auto; text-align: center; font-weight: bold; color: #172774;">NONGOR FOOTWEAR</div>
-          <img src="https://iconape.com/wp-content/png_logo_vector/apex-shoes-logo.png" alt="Stamp" class=""text-center style="height: 40px;"/>
-        
-        <div class="row justify-content-md-center">
-            <div class="col-md-6">
+     <div class="header-container">
+        <img src="https://iconape.com/wp-content/png_logo_vector/apex-shoes-logo.png" alt="Stamp" class="stamp">
+        <div class="company-name">NONGOR FOOTWEAR</div>
+        <div class="company-address">Noor Plaza, Ramganj,Lakshmipur</div>
+        <hr>
+      </div>
+          <div class="row justify-content-md-center">
+            <div class="col-md-9">
                 <div class="card border mb-2">
                     <div class="card-header text-white bg-success">
                         <i class="fas fa-search"></i> Search With Artical Number
@@ -76,11 +190,11 @@
                           <div id="qr-reader" class="mt-4" style="position: relative; padding: 0px; border: none;"></div>
 <div id="qr-reader-results"></div>
                             <div class="col-md-12 mb-2">
-                                <input type="text" id="idcard" class="form-control text-center" placeholder="Enter Your Artical Number" required>
+                                <input type="text" id="idcard" class="form-control" placeholder="Enter Your Article Number" required>
                             </div>
-                            <button type="submit" class="btn btn-success w-100 mb-2">Search</button>
+                            <button type="submit" class="btn btn-success w-100 mb-2"><i class="fas fa-search"></i>Search</button>
                             <div class="text-center">
-                                <span id="errorMessage"></span>
+                                <span class="not-found-message" id="errorMessage"></span>
                             </div>
                         </form>
                     </div>
@@ -208,7 +322,8 @@
                     $('#ptable').show();
                     // $("#idcard").val(""); // Clear the input field
                 } else {
-                    error.text("Data not found!");
+                    error.text("দুঃখিত, আমরা আপনার অনুরোধ করা তথ্য খুঁজে পাইনি। "Apex"-এর কিছু নিবন্ধ আমাদের ডাটাবেসে বর্তমানে উপলব্ধ নেই। আপনি সঠিক নিবন্ধ নম্বরটি আবার পরীক্ষা করে দেখুন অথবা অন্য কোনো বিকল্প চেষ্টা করতে পারেন। আমাদের সাথে যোগাযোগ করুন যদি আপনাকে আরও সহায়তা করতে পারি।
+!");
                     $('#ptable').hide();
                 }
             } else {
