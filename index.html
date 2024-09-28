@@ -13,31 +13,57 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
     <style>
-        body {
-            font-family: 'Sriracha', sans-serif;
-        }
+    body {
+        font-family: 'Sriracha', sans-serif;
+    }
 
-        a {
-            color: #198754;
-            text-decoration: none;
-        }
+    a {
+        color: #198754;
+        text-decoration: none;
+    }
 
-        #ptable {
-            display: none;
-        }
+    #ptable {
+        display: none;
+        position: relative; /* For watermark positioning */
+    }
 
-        span {
-            cursor: pointer;
-        }
+    #ptable::before {
+        content: "NONGOR FOOTWEAR"; /* Watermark text */
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        font-size: 4rem; /* Adjust as needed */
+        color: rgba(0, 0, 0, 0.1); /* Color with opacity */
+        pointer-events: none; /* Allow clicks through */
+        white-space: nowrap; /* Prevent wrapping */
+    }
 
-        #errorMessage {
-            color: red;
-        }
+    /* Or use the watermark logo */
+    /* Uncomment below to use a logo instead of text
+    #ptable {
+        display: none;
+        position: relative;
+        background-image: url('https://example.com/path-to-your-logo.png');
+        background-size: cover;
+        background-position: center;
+        opacity: 0.1; /* Adjust opacity */
+    }
+    */
 
-        table th {
-            background-color: #ffc107;
-        }
-    </style>
+    span {
+        cursor: pointer;
+    }
+
+    #errorMessage {
+        color: red;
+    }
+
+    table th {
+        background-color: #ffc107;
+    }
+</style>
+
 </head>
 
 <body>
@@ -58,7 +84,7 @@
                             <div class="col-md-12 mb-2">
                                 <input type="text" id="idcard" class="form-control text-center" placeholder="Enter Your Artical Number" required>
                             </div>
-<!--                             <button type="submit" class="btn btn-success w-100 mb-2">Search</button> -->
+                            <button type="submit" class="btn btn-success w-100 mb-2">Search</button>
                             <div class="text-center">
                                 <span id="errorMessage"></span>
                             </div>
