@@ -228,20 +228,22 @@
           "qr-reader", { fps: 10, qrbox: 250 });
       
       function onScanSuccess(decodedText, decodedResult) {
-          if (decodedText !== lastResult) {
-              ++countResults;
-              lastResult = decodedText;
-              console.log(`Scan result = ${decodedText}`, decodedResult);
-  
-              resultContainer.innerHTML += `<div class="p-3 mb-2 bg-success text-white">[${countResults}] - ${decodedText}</div>`;
-              
-              //Assign the scanned code to productCode field
-              const productCode = document.getElementById("idcard");
-              productCode.value = decodedText;
+            if (decodedText !== lastResult) {
+                ++countResults;
+                lastResult = decodedText;
+                console.log(`Scan result = ${decodedText}`, decodedResult);
+        
+                // resultContainer.innerHTML += `<div class="p-3 mb-2 bg-success text-white">[${countResults}] - ${decodedText}</div>`;
+        
+                // Assign the scanned code to the productCode field
+                const productCode = document.getElementById("idcard");
+                productCode.value = decodedText;
+        
+                // Simulate form submission to trigger search
+                $('#idcard').trigger('keyup');
+            }
+        }
 
-              search(event);
-          }
-      }
       
       // Optional callback for error, can be ignored.
       function onScanError(qrCodeError) {
