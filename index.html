@@ -375,8 +375,9 @@
                         "<thead class='bg-warning'>" +
                         "<tr>" +
                         "<th scope='col'>Article</th>" +
-                        "<th scope='col'>Size</th>" +
-                        "<th scope='col'>Price</th>" +
+                        "<th scope='col'>MRP</th>" +
+                        "<th scope='col'>Dis Price</th>" +
+                        "<th scope='col'>Discount%</th>" +
                         "<th scope='col'>Quantity</th>" +
                         "</tr>" +
                         "</thead><tbody>";
@@ -384,8 +385,9 @@
                     filteredData.forEach(function (row) {
                         result += "<tr>";
                         result += "<td>" + row.Artical + "</td>"; // Access the Artical key
-                        result += "<td>" + row.Size + "</td>"; // Access the Size key
-                        result += "<td>" + row.Price + "</td>"; // Access the Price key
+                        result += "<td>" + row.MRP + "</td>"; // Access the Size key
+                        result += "<td>" + row.Disc Price + "</td>"; // Access the Price key
+                        result += "<td>" + row.Discount + "</td>"; // Access the Price key
                         result += "<td>" + row.Quantity + "</td>"; // Access the Quantity key
                         result += "</tr>";
                     });
