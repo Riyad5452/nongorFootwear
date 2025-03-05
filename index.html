@@ -437,13 +437,14 @@
           if (decodedText !== lastResult) {
               ++countResults;
               lastResult = decodedText;
+              let filteredText = decodedText.substring(0, 8);
               console.log(`Scan result = ${decodedText}`, decodedResult);
   
               resultContainer.innerHTML += `<div class="p-3 mb-2 bg-success text-white">[${countResults}] - ${decodedText}</div>`;
               
               //Assign the scanned code to productCode field
               const productCode = document.getElementById("idcard");
-              productCode.value = decodedText;
+              productCode.value = filteredText;
 
             // No need to bind keyup event here again
             // $("#idcard").on("keyup", search); // Remove this line
