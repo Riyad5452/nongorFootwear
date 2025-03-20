@@ -262,6 +262,9 @@
                             <div class="col-md-12 mb-2">
                                 <input type="text" id="idcard" class="form-control" placeholder="Enter Your Article Number" required>
                             </div>
+                            <audio id="beep-sound">
+        <source src="https://semicon.github.io/sounds/store-scanner-beep-90395.mp3"  type="audio/mpeg">
+    </audio>
                             <button type="submit" class="btn btn-success w-100 mb-2"><i class="fas fa-search"></i>Search</button>
                             <div class="text-center">
                                 <span id="errorMessage"></span>
@@ -446,9 +449,15 @@
               const productCode = document.getElementById("idcard");
               productCode.value = filteredText;
 
-            // No need to bind keyup event here again
-            // $("#idcard").on("keyup", search); // Remove this line
-            search(); // Call search immediately after setting value
+              //  Play beep sound
+            var beepSound = document.getElementById("beep-sound");
+            beepSound.play();
+
+              // Stop the scanner after playing the sound
+            setTimeout(() => {
+                html5QrcodeScanner.clear();
+            }, 1000);
+            search();
           }
       }
       
