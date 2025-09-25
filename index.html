@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -315,7 +316,7 @@
                 showConfirmButton: false,
             });
             Swal.showLoading();
-
+            $("#idcard").focus();
             // Fetch data via Ajax
             $.ajax({
                 url: 'https://script.google.com/macros/s/AKfycbwIBwLhJu8ON9e7FFyZmu0jeWsWHxHq7baRBBspk0r9DRQCDrv5B6is3cJsjGqKWKxofQ/exec',
@@ -484,6 +485,8 @@
 
     window.restartScanner = function() {
         html5QrcodeScanner.clear();
+                    $("#idcard").focus();
+
         html5QrcodeScanner.render(onScanSuccess, onScanError);
     };
       
