@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -262,7 +261,7 @@
                             <div id="qr-reader-results"></div>
                             
                             <div class="col-md-12 mb-2">
-                                <input type="text" id="idcard" class="form-control" placeholder="Enter Your Article Number" required>
+                                <input type="text" id="idcard" class="form-control" placeholder="Enter Your Article Number" required autofocus>
                             </div>
                             
                             <audio id="beep-sound">
@@ -314,9 +313,11 @@
                 icon: 'info',
                 title: 'Loading..',
                 showConfirmButton: false,
+                allowOutsideClick: false,
+                allowEscapeKey: false
             });
             Swal.showLoading();
-            $("#idcard").focus();
+            
             // Fetch data via Ajax
             $.ajax({
                 url: 'https://script.google.com/macros/s/AKfycbwIBwLhJu8ON9e7FFyZmu0jeWsWHxHq7baRBBspk0r9DRQCDrv5B6is3cJsjGqKWKxofQ/exec',
@@ -337,6 +338,10 @@
                         // Validate data structure
                         if (data.length > 0 && data.every(item => typeof item === 'object' && item.Artical)) {
                             Swal.close(); // Close the loading Swal
+                            // Focus on the input field after loading
+                            setTimeout(function() {
+                                $("#idcard").focus();
+                            }, 100);
                         } else {
                             console.error("Data is not an array of objects or is empty:", data); // Debugging log
                             Swal.fire({
@@ -344,6 +349,9 @@
                                 icon: 'error',
                                 title: 'Unexpected data format!',
                                 showConfirmButton: true,
+                            }).then(() => {
+                                // Focus on the input field even if there's an error
+                                $("#idcard").focus();
                             });
                         }
                     } catch (error) {
@@ -353,6 +361,9 @@
                             icon: 'error',
                             title: 'Error parsing data!',
                             showConfirmButton: true,
+                        }).then(() => {
+                            // Focus on the input field even if there's an error
+                            $("#idcard").focus();
                         });
                     }
                 },
@@ -362,6 +373,9 @@
                         icon: 'error',
                         title: 'Error loading data!',
                         showConfirmButton: true,
+                    }).then(() => {
+                        // Focus on the input field even if there's an error
+                        $("#idcard").focus();
                     });
                 }
             });
@@ -370,8 +384,10 @@
             $("#idcard").on("keyup", search);
         });
 
-        function search() {
-            event.preventDefault();
+        function search(event) {
+            if (event) {
+                event.preventDefault();
+            }
 
             var id = $("#idcard").val().trim();
             var error = $("#errorMessage");
@@ -411,10 +427,8 @@
                     $('#table').html(result);
                     error.text(""); // Clear error message
                     $('#ptable').show();
-                    $('.not-found-message').hide(); // Show the not-found message
-                    // $("#idcard").val(""); // Clear the input field
+                    $('.not-found-message').hide(); // Hide the not-found message
                 } else {
-                    // error.text("Data not found!");
                     $('.not-found-message').show(); // Show the not-found message
                     $('#ptable').hide();
                 }
@@ -485,8 +499,10 @@
 
     window.restartScanner = function() {
         html5QrcodeScanner.clear();
-                    $("#idcard").focus();
-
+        // Focus on the input field when restarting scanner
+        setTimeout(function() {
+            $("#idcard").focus();
+        }, 100);
         html5QrcodeScanner.render(onScanSuccess, onScanError);
     };
       
